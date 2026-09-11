@@ -229,7 +229,12 @@ function on_create() {
 
 function on_step() {
     if (!is_local_mode()) exit
-    if (!is_undefined(self.state.stage_detail_widget)) exit
+    if (!is_undefined(self.state.stage_detail_widget)) {
+        if (instance_exists(self.state.stage_detail_widget)) {
+            exit
+        }
+        self.state.stage_detail_widget = undefined
+    }
     if (self.state.current_stage_id == "") exit
 
     /// @type {Asset.GMObject.StageDetail} 
