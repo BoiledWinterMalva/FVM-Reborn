@@ -16,6 +16,7 @@
 #include <cwctype>
 #include <string.h>
 
+#include "archive_extractor.h"
 #include "file_system.h"
 #include "json.hpp"
 #include "typedef.h"
@@ -30,6 +31,7 @@
 // IME 屏蔽心跳：用窗口定时器自持 1 秒重压。
 // v5 的心跳挂在 obj_game_init 上，而该对象只在 room_init 存在且非持久 → 进游戏后循环就死了
 static const UINT_PTR kImeTimerId = 0x494D;  // 'MI'
+static bool g_ime_block_active = true;
 
 static void ApplyImeBlock(HWND hwnd, bool from_timer);
 
@@ -547,6 +549,7 @@ static bool ShouldSuppressNow() {
 //     改成 per-window 断开 IME 上下文（只影响游戏窗口本身）。
 static void ApplyImeBlock(HWND hwnd, bool from_timer) {
   if (!hwnd) return;
+  if (!g_ime_block_active) return;
 
   // 1) 子类化（处理 WM_IME_SETCONTEXT 屏蔽候选窗 + 焦点/心跳）
   if (!GetWindowSubclass(hwnd, ImeWndProc, 1, 0)) {
@@ -628,6 +631,40 @@ GmlCallable auto DisableIme(double hwnd_value) -> double {
   HWND hwnd = static_cast<HWND>(
       reinterpret_cast<void*>(static_cast<INT_PTR>(hwnd_value)));
   if (!hwnd) hwnd = GetForegroundWindow();
+  g_ime_block_active = true;
   ApplyImeBlock(hwnd, false);
   return static_cast<double>(NativeError::Ok);
+}
+
+GmlCallable auto EnableIme(double hwnd_value) -> double {
+  HWND hwnd = static_cast<HWND>(
+      reinterpret_cast<void*>(static_cast<INT_PTR>(hwnd_value)));
+  if (!hwnd) hwnd = GetForegroundWindow();
+  g_ime_block_active = false;
+  if (hwnd) {
+    KillTimer(hwnd, kImeTimerId);
+    RemoveWindowSubclass(hwnd, ImeWndProc, 1);
+    ImmAssociateContextEx(hwnd, nullptr, IACE_DEFAULT);
+  }
+  return static_cast<double>(NativeError::Ok);
+}
+
+GmlCallable auto UnzipMapFile(const char* zip_path,
+                              const char* parent_folder_full_path) -> double {
+  if (!zip_path || !*zip_path || !parent_folder_full_path ||
+      !*parent_folder_full_path) {
+    return FailWith(NativeError::InvalidArgument,
+                    "UnzipMapFile: empty zip_path or parent_folder");
+  }
+  try {
+    const std::wstring w_zip = FileSystem::Utf8ToUtf16(zip_path);
+    const std::wstring w_out = FileSystem::Utf8ToUtf16(parent_folder_full_path);
+    ArchiveExtractor extractor(ArchiveExtractor::FindSevenZipDll());
+    extractor.extract(w_zip, w_out);
+    return static_cast<double>(NativeError::Ok);
+  } catch (const ArchiveException& e) {
+    return FailWith(e.code(), e.what());
+  } catch (const std::exception& e) {
+    return FailWith(NativeError::ExtractFailed, e.what());
+  }
 }
