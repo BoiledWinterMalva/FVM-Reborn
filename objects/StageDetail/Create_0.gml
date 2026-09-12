@@ -158,7 +158,7 @@ function on_draw() {
 
         draw_sprite_ext(spr_level_progress_icon, 0, 
             self.state.left + 60, self.state.top + self.state.height - 90, 
-            1.5, 1.5, 
+            0.7, 0.7, 
             0, c_white, 1)
         scribble("Lv." +  string(self.state.custom_stage.mouse_level))
             .draw(self.state.left + 90, self.state.top+self.state.height-108)
@@ -172,7 +172,7 @@ function on_draw() {
         
         draw_sprite_ext(spr_level_progress_flag, 0, 
             self.state.left + 340, self.state.top + self.state.height - 80, 
-            1.2, 1.2, 
+            0.3, 0.3, 
             0, c_white, 1)
         scribble(string(self.state.custom_stage.total_waves))
             .draw(self.state.left + 370, self.state.top+self.state.height-106)

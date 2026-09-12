@@ -21,7 +21,7 @@ self.state = {
     scrollbar_width: 14,
     scrollbar_dragging: false,
     scrollbar_drag_offset: 0,
-    show_scrollbar: true,
+    show_scrollbar: false,
 
     /// @type {function} 
     should_correspond: function () {return true},

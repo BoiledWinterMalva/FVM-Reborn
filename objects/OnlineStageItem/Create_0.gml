@@ -35,14 +35,22 @@ function get_height() {
     return self.state.height
 }
 
+function refresh_thumb_scale(_sprite) {
+    self.state.map_sprite_scale = 1
+    if (is_undefined(_sprite) || !sprite_exists(_sprite)) {
+        return
+    }
+    var _h = sprite_get_height(_sprite)
+    if (_h > 0) {
+        self.state.map_sprite_scale = self.state.map_sprite_size / _h
+    }
+}
+
 function init(_item) {
     self.state.item = _item
     self.state.initialized = true
-    if (!is_undefined(_item.thumb_sprite) && sprite_exists(_item.thumb_sprite)) {
-        var _h = sprite_get_height(_item.thumb_sprite)
-        if (_h > 0) {
-            self.state.map_sprite_scale = self.state.map_sprite_size / _h
-        }
+    if (!is_undefined(_item.thumb_sprite)) {
+        refresh_thumb_scale(_item.thumb_sprite)
     }
     return self
 }
@@ -52,13 +60,25 @@ function set_thumb_sprite(_sprite) {
         return self
     }
     self.state.item.thumb_sprite = _sprite
-    if (!is_undefined(_sprite) && sprite_exists(_sprite)) {
-        var _h = sprite_get_height(_sprite)
-        if (_h > 0) {
-            self.state.map_sprite_scale = self.state.map_sprite_size / _h
-        }
-    }
+    refresh_thumb_scale(_sprite)
     return self
+}
+
+/// @param {Asset.GMSprite} _sprite
+/// @param {Real} _x
+/// @param {Real} _y
+function draw_map_preview(_sprite, _x, _y) {
+    var _box = self.state.map_sprite_size
+    var _sw = sprite_get_width(_sprite)
+    var _sh = sprite_get_height(_sprite)
+    if (_sw <= 0 || _sh <= 0) {
+        return
+    }
+    var _scale = _box / _sh
+    var _src_w = min(_sw, _box / _scale)
+    var _src_h = min(_sh, _box / _scale)
+    self.state.map_sprite_scale = _scale
+    draw_sprite_part_ext(_sprite, 0, 0, 0, _src_w, _src_h, _x, _y, _scale, _scale, c_white, 1)
 }
 
 function set_downloaded(_downloaded) {
@@ -139,25 +159,26 @@ function on_draw() {
 
     var _sprite_start_x = self.state.left + self.state.map_sprite_left
     var _sprite_start_y = self.state.top + self.state.map_sprite_top
+    var _box = self.state.map_sprite_size
     var _prev_scissor = gpu_get_scissor()
     var _prev_scissor_top = _prev_scissor.y
     var _prev_scissor_bottom = _prev_scissor.y + _prev_scissor.h
-    var _default_scissor_bottom = _sprite_start_y + self.state.map_sprite_size
-    var _outlined_y = max((_default_scissor_bottom - _prev_scissor_bottom), 0)
-    gpu_set_scissor(
-        _sprite_start_x, max(_prev_scissor_top, _sprite_start_y),
-        self.state.map_sprite_size, self.state.map_sprite_size - _outlined_y)
-    if (!is_undefined(self.state.item.thumb_sprite) && sprite_exists(self.state.item.thumb_sprite)) {
-        draw_sprite_ext(
-            self.state.item.thumb_sprite, 0,
-            _sprite_start_x, _sprite_start_y,
-            self.state.map_sprite_scale, self.state.map_sprite_scale,
-            0, c_white, 1)
-    } else {
-        draw_set_color(make_color_rgb(180, 160, 130))
-        draw_rectangle(_sprite_start_x, _sprite_start_y, _sprite_start_x + self.state.map_sprite_size, _sprite_start_y + self.state.map_sprite_size, false)
+    var _outlined_y = max((_sprite_start_y + _box) - _prev_scissor_bottom, 0)
+    var _clip_h = max(0, _box - _outlined_y)
+    if (_clip_h > 0) {
+        gpu_set_scissor(
+            floor(_sprite_start_x),
+            floor(max(_prev_scissor_top, _sprite_start_y)),
+            ceil(_box),
+            ceil(_clip_h))
+        if (!is_undefined(self.state.item.thumb_sprite) && sprite_exists(self.state.item.thumb_sprite)) {
+            draw_map_preview(self.state.item.thumb_sprite, _sprite_start_x, _sprite_start_y)
+        } else {
+            draw_set_color(make_color_rgb(180, 160, 130))
+            draw_rectangle(_sprite_start_x, _sprite_start_y, _sprite_start_x + _box, _sprite_start_y + _box, false)
+        }
+        gpu_set_scissor(_prev_scissor)
     }
-    gpu_set_scissor(_prev_scissor)
 
     scribble(self.state.item.title)
         .align(fa_left, fa_center)
