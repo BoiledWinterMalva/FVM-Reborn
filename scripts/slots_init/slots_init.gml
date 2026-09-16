@@ -361,4 +361,45 @@ function slots_init(){
 	//    {"shape":1, "sprite":spr_fruit_tart_1, "cost":150, "cooldown":7*60, "description":"风车水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_1},
 	//	{"shape":2, "sprite":spr_fruit_tart_2, "cost":150, "cooldown":7*60, "description":"巧克力水果塔：为本行投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_2}
 	//]);
+	
+	register_card("warm_birds", obj_warm_birds, [
+	    {"shape":0, "sprite":spr_warm_birds, "cost":125, "cooldown":25*60, "description":"暖暖鸡：很烧，生产3朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_warm_birds_1, "cost":125, "cooldown":25*60, "description":"焰羽暖暖鸡：太烧了，生产4朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_warm_birds_2, "cost":125, "cooldown":15*60, "description":"日耀暖暖鸡：烧得没边了，生产5朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("gugu_birds", obj_gugu_birds, [
+	    {"shape":0, "sprite":spr_gugu_birds, "cost":75, "cooldown":15*60, "description":"咕咕鸡：放在酒杯灯上，生产3朵火苗","plant_type":"normal","feature_type":"upgrade","target_card":"goblet_lamp","place_preview":spr_gugu_birds_small},
+	    {"shape":1, "sprite":spr_gugu_birds_1, "cost":75, "cooldown":15*60, "description":"萤火咕咕鸡：放在酒杯灯上，生产4朵火苗","plant_type":"normal","feature_type":"upgrade","target_card":"goblet_lamp","place_preview":spr_gugu_birds_small_1},
+		{"shape":2, "sprite":spr_gugu_birds_2, "cost":75, "cooldown":15*60, "description":"梦幻咕咕鸡：一次生产5朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_gugu_birds_small_2}
+	]);
+	register_card("nija_bird", obj_nija_bird, [
+	    {"shape":0, "sprite":spr_nija_bird_icon, "cost":200, "cooldown":30*60, "description":"忍忍鸡：咿呀！忍者追踪飞镖3连","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_nija_bird},
+	    {"shape":1, "sprite":spr_nija_bird_icon_1, "cost":200, "cooldown":30*60, "description":"疾风忍忍鸡：咿呀！忍者追踪飞镖4连","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_nija_bird_1},
+		{"shape":2, "sprite":spr_nija_bird_icon_2, "cost":200, "cooldown":30*60, "description":"幻影忍忍鸡：咿呀！忍者追踪飞镖5连","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_nija_bird_2}
+	]);
+	register_card("silly_bird", obj_silly_bird, [
+	    {"shape":0, "sprite":spr_silly_bird, "cost":115, "cooldown":7*60, "description":"呆呆鸡：向前后两个方向发射羽毛","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_silly_bird_icon_1, "cost":115, "cooldown":7*60, "description":"水遁呆呆鸡：向前后两个方向发射羽毛","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_silly_bird_1},
+		{"shape":2, "sprite":spr_silly_bird_icon_2, "cost":115, "cooldown":7*60, "description":"贤圣呆呆鸡：向前后两个方向发射羽毛","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_silly_bird_2}
+	]);
+	register_card("bangbang_bird", obj_bangbang_bird, [
+	    {"shape":0, "sprite":spr_bangbang_bird, "cost":225, "cooldown":7*60, "description":"砰砰鸡：向前方三行发射3只愤怒小鸟","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_bangbang_bird_1, "cost":225, "cooldown":7*60, "description":"紫薯砰砰鸡：向前方三行发射4只愤怒小鸟","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_bangbang_bird_2, "cost":225, "cooldown":7*60, "description":"炫光砰砰鸡：向前方三行发射6只愤怒小鸟","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("rotating_bird", obj_rotating_bird, [
+	    {"shape":0, "sprite":spr_rotating_bird_icon, "cost":200, "cooldown":30*60, "description":"转转鸡：5*5范围穿透攻击","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_rotating_bird_icon_1, "cost":200, "cooldown":30*60, "description":"五彩转转鸡：5*5范围穿透攻击","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_rotating_bird_icon_2, "cost":200, "cooldown":30*60, "description":"王室转转鸡：5*5范围穿透攻击","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("catapult_bird", obj_catapult_bird, [
+	    {"shape":0, "sprite":spr_catapult_bird_icon, "cost":200, "cooldown":7*60, "description":"弹弹鸡：投掷两颗3*3范围溅射鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_catapult_bird},
+	    {"shape":1, "sprite":spr_catapult_bird_icon_2, "cost":200, "cooldown":7*60, "description":"寒霜弹弹鸡：投掷两颗3*3范围溅射冰鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_catapult_bird_1},
+		{"shape":2, "sprite":spr_catapult_bird_icon_1, "cost":200, "cooldown":7*60, "description":"冰川弹弹鸡：投掷两颗3*4范围溅射冰鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_catapult_bird_2}
+	]);
+	register_card("bobo_bird", obj_bobo_bird, [
+	    {"shape":0, "sprite":spr_bobo_bird_icon, "cost":375, "cooldown":15*60, "description":"钵钵鸡：投掷麻辣串炸弹，间隔召唤小鸡冲撞整行","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_bobo_bird_icon_1, "cost":375, "cooldown":15*60, "description":"飘香钵钵鸡：投掷麻辣串炸弹，间隔召唤小鸡冲撞整行","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_bobo_bird_icon_2, "cost":375, "cooldown":15*60, "description":"麻辣钵钵鸡：投掷麻辣串炸弹，间隔召唤小鸡冲撞整行","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
 }

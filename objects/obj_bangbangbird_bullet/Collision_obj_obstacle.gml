@@ -1,0 +1,16 @@
+if target_type == "normal" && row == other.row{
+	if burnt == 0{
+		var inst = instance_create_depth(x,y,depth,obj_sillybird_bullet_effect)
+		inst.sprite_index = spr_bangbangbird_bullet_effect
+		if shape == 1 {
+			inst.sprite_index = spr_bangbangbird_bullet_effect_1
+		} else if shape >= 2 {
+			inst.sprite_index = spr_bangbangbird_bullet_effect_2
+		}
+	}
+	else if burnt == 1{
+		var inst = instance_create_depth(x+25,y,depth,obj_fire_bullet_effect)
+		inst.sprite_index = spr_fire_bullet_effect
+	}
+	instance_destroy()
+}

@@ -78,4 +78,13 @@ function skill_init(){
 	register_card_skill("fruit_tart","hp",[50,100,150,200,250,300,350,400,450])
 	register_card_skill("rabbit_lantern","atk",[1800,1900,2000,2100,2200,2300,2400,2500,2700])
 	register_card_skill("delicacy_firework","atk",[900,950,1000,1050,1100,1150,1200,1250,1300])
+	
+	register_card_skill("warm_birds","flame_produce",[25,26,27,28,30,32,35,38,42])
+	register_card_skill("gugu_birds","flame_produce",[25,26,27,28,30,32,35,38,42])
+	register_card_skill("nija_bird","cycle",[111,108,105,102,99,96,93,90,87])
+	register_card_skill("silly_bird","cycle",[1.4*60,1.35*60,1.3*60,1.25*60,1.2*60,1.15*60,1.1*60,1.05*60,0.95*60])
+	register_card_skill("bangbang_bird","cycle",[1.4*60,1.35*60,1.3*60,1.25*60,1.2*60,1.15*60,1.1*60,1.05*60,0.95*60])
+	register_card_skill("rotating_bird","cycle",[1.8*60,1.75*60,1.7*60,1.65*60,1.6*60,1.55*60,1.5*60,1.4*60,1.3*60])
+	register_card_skill("catapult_bird","cycle",[2.5*60,2.45*60,2.4*60,2.35*60,2.3*60,2.25*60,2.2*60,2.1*60,1.95*60])
+	register_card_skill("bobo_bird","cycle",[3.5*60,3.4*60,3.3*60,3.2*60,3.1*60,3.0*60,2.85*60,2.7*60,2.5*60])
 }

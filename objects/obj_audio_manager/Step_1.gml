@@ -1,0 +1,1 @@
+audio_manager_begin_step();

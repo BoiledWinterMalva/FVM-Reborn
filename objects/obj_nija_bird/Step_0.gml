@@ -1,0 +1,102 @@
+if global.is_paused{
+	exit
+}
+
+event_inherited(); 
+
+if is_frozen || state == CARD_STATE.SLEEP{
+	exit
+}
+
+var current_flash_speed = flash_speed
+if is_slowdown{
+	current_flash_speed *= 2
+}
+
+////检测屏幕上是否有敌人
+//var has_enemy = false
+//if instance_exists(obj_enemy_parent){
+//	with obj_enemy_parent{
+//		if can_target_on(other.target_type,target_type){
+//			has_enemy = true
+//		}
+//	}
+//}
+////攻击逻辑
+//if (has_enemy) {
+//    if (attack_timer <= cycle - attack_anim * current_flash_speed) {
+//        attack_timer++;
+//    } else if (attack_timer <= cycle) {
+//        attack_timer++;
+//        state = CARD_STATE.ATTACK;
+//    } else {
+//        attack_timer = 0;
+//        state = CARD_STATE.IDLE;
+//    }
+//	if (attack_timer == cycle - 5*flash_speed){
+//		event_user(1);
+//		queue_sfx(snd_throw)
+//	}
+//	if (attack_timer == cycle - 4*flash_speed){
+//		event_user(1);
+//	}
+//	if (attack_timer == cycle - 3*flash_speed){
+//		event_user(1);
+//	}
+//	if (attack_timer == cycle - 2*flash_speed) && shape >= 1 {
+//		event_user(1);
+//	}
+//	if (attack_timer == cycle - 1*flash_speed) && shape >= 2 {
+//		event_user(1);
+//	}
+//} else {
+//    // 没有符合条件的敌人，重置状态
+//    attack_timer = 0;
+//    state = CARD_STATE.IDLE;
+//}
+
+//冷却计时器，没冷却完啥都不要干
+if cooldown_timer > 0{
+	cooldown_timer --;
+	return;
+}
+
+if !attacking {
+	// 检测范围内活着的敌人
+	with (obj_enemy_parent) {
+	    if (
+		can_target_on(other.target_type, target_type) 
+		&& hp > 0
+		) {
+	        other.attacking = true;
+	        break;
+	    } 
+	}
+}
+
+if attacking {
+	state = CARD_STATE.ATTACK;
+	attack_timer ++
+	if attack_timer == (attack_anim - 5) * current_flash_speed {
+		event_user(1);// 发射子弹
+		queue_sfx(snd_throw);
+	}
+	if attack_timer == (attack_anim - 4) * current_flash_speed {
+		event_user(1);// 发射子弹
+	}
+	if attack_timer == (attack_anim - 3) * current_flash_speed {
+		event_user(1);// 发射子弹
+	}
+	if attack_timer == (attack_anim - 2) * current_flash_speed && shape >= 1 {
+		event_user(1);// 发射子弹
+	}
+	if attack_timer == (attack_anim - 1) * current_flash_speed && shape >= 2 {
+		event_user(1);// 发射子弹
+	}
+	if (attack_timer >= attack_anim * current_flash_speed || attack_timer >= cycle){
+		attacking = false;
+		cooldown_timer = cycle - attack_timer;
+		attack_timer = 0;
+		state = CARD_STATE.IDLE;
+	}
+}

@@ -137,7 +137,8 @@ function maps_init(){
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_4_1",
 					"rewards":[
-						{"card_id":"large_fire","target_shape":1}
+						{"card_id":"large_fire","target_shape":1},
+						{"card_id":"rotating_bird","target_shape":1}
 					]
 				},
 				{
@@ -151,7 +152,8 @@ function maps_init(){
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_4_2",
 					"rewards":[
-						{"card_id":"small_fire","target_shape":1}
+						{"card_id":"small_fire","target_shape":1},
+						{"card_id":"nija_bird","target_shape":1}
 					]
 				},
 				{
@@ -180,7 +182,8 @@ function maps_init(){
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_5_2",
 					"rewards":[
-						{"card_id":"cherry_pudding","target_shape":1}
+						{"card_id":"cherry_pudding","target_shape":1},
+						{"card_id":"warm_birds","target_shape":1}
 					]
 				},
 				{
@@ -255,7 +258,8 @@ function maps_init(){
 					"pre_level":"tower_cake_8_1",
 					"rewards":[
 						{"card_id":"brazier","target_shape":1},
-						{"card_id":"coffee_grounds","target_shape":1}
+						{"card_id":"coffee_grounds","target_shape":1},
+						{"card_id":"bangbang_bird","target_shape":1}
 					]
 				},
 				{
@@ -269,7 +273,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_8_2",
 					"rewards":[
-						{"card_id":"stinky_tofu_pult","target_shape":1}
+						{"card_id":"stinky_tofu_pult","target_shape":1},
+						{"card_id":"silly_bird","target_shape":1}
 					]
 				},
 				{
@@ -298,7 +303,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_9_2",
 					"rewards":[
-						{"card_id":"firework_dragon","target_shape":1}
+						{"card_id":"firework_dragon","target_shape":1},
+						{"card_id":"catapult_bird","target_shape":1}
 					]
 				},
 				{
@@ -355,7 +361,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_11_2",
 					"rewards":[
-						{"card_id":"oden_pot","target_shape":1}
+						{"card_id":"oden_pot","target_shape":1},
+						{"card_id":"bobo_bird","target_shape":1}
 					]
 				},
 				{
@@ -685,6 +692,7 @@ function maps_init(){
 					"pre_level":"tower_cake_22_2",
 					"rewards":[
 						{"card_id":"hotdog_cannon","target_shape":2},
+						{"card_id":"nija_bird","target_shape":2}
 					]
 				},
 				{
@@ -758,7 +766,8 @@ function maps_init(){
 					"pre_level":"tower_cake_25_1",
 					"rewards":[
 						{"card_id":"cotton_candy","target_shape":2},
-						{"card_id":"small_fire","target_shape":2}
+						{"card_id":"small_fire","target_shape":2},
+						{"card_id":"catapult_bird","target_shape":2}
 					]
 				},
 				{
@@ -803,7 +812,8 @@ function maps_init(){
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_26_2",
 					"rewards":[
-						{"card_id":"triple_wine_rack","target_shape":2}
+						{"card_id":"triple_wine_rack","target_shape":2},
+						{"card_id":"warm_birds","target_shape":2}
 					]
 				},
 				{
@@ -818,7 +828,8 @@ function maps_init(){
 					"pre_level":"tower_cake_27_1",
 					"rewards":[
 						{"card_id":"wine_bottle_bomb","target_shape":2},
-						{"card_id":"rabbit_lantern","target_shape":2}
+						{"card_id":"rabbit_lantern","target_shape":2},
+						{"card_id":"silly_bird","target_shape":2}
 					]
 				},
 				{
@@ -833,7 +844,8 @@ function maps_init(){
 					"pre_level":"tower_cake_27_2",
 					"rewards":[
 						{"card_id":"gatlin_long_bao","target_shape":2},
-						{"card_id":"pizza_oven","target_shape":2}
+						{"card_id":"pizza_oven","target_shape":2},
+						{"card_id":"bangbang_bird","target_shape":2}
 					]
 				},
 				{
@@ -922,7 +934,8 @@ function maps_init(){
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_30_2",
 					"rewards":[
-						{"card_id":"brazier","target_shape":2}
+						{"card_id":"brazier","target_shape":2},
+						{"card_id":"rotating_bird","target_shape":2}
 					]
 				},
 				{
@@ -936,7 +949,8 @@ function maps_init(){
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_31_1",
 					"rewards":[
-						{"card_id":"bull_firework","target_shape":2}
+						{"card_id":"bull_firework","target_shape":2},
+						{"card_id":"bobo_bird","target_shape":2}
 					]
 				},
 				{
